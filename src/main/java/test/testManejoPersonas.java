@@ -10,10 +10,14 @@ public class testManejoPersonas {
         PersonaDAO personaDAO = new PersonaDAO();
 
         //Insertando un nuevo objeto de tipo persona
-        Persona personaNueva = new Persona("Luis Eduardo", "Flores", "test6@test.com", "55443322");
-        personaDAO.insertar(personaNueva);
+        /*Persona personaNueva = new Persona("Luis Eduardo", "Flores", "test6@test.com", "55443322");
+        personaDAO.insertar(personaNueva);*/
 
+        //Actualizar un objeto de persona existente
+         Persona personaModificar = new Persona(5, "Juan Carlos", "Esparza", "jcesparza@gmai.com", "5544332211");
+         personaDAO.actualizar(personaModificar);
 
+         //Listado
         List<Persona> personas = personaDAO.seleccionar();
 
         for (Persona persona : personas){
