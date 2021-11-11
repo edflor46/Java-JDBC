@@ -14,8 +14,12 @@ public class testManejoPersonas {
         personaDAO.insertar(personaNueva);*/
 
         //Actualizar un objeto de persona existente
-         Persona personaModificar = new Persona(5, "Juan Carlos", "Esparza", "jcesparza@gmai.com", "5544332211");
-         personaDAO.actualizar(personaModificar);
+         /*Persona personaModificar = new Persona(5, "Juan Carlos", "Esparza", "jcesparza@gmai.com", "5544332211");
+         personaDAO.actualizar(personaModificar);*/
+
+        //Eliminar un registro
+        Persona personaEliminar = new Persona(5);
+        personaDAO.eliminar(personaEliminar);
 
          //Listado
         List<Persona> personas = personaDAO.seleccionar();
