@@ -6,12 +6,17 @@ public class Usuarios {
     private String usuario;
     private String password;
 
-    public Usuarios() {
+    public Usuarios(int idUsuario, String usuario, String password) {
+        this.id_usuario = idUsuario;
+        this.usuario = usuario;
+        this.password = password;
+
     }
 
     public Usuarios(int id_usuario) {
         this.id_usuario = id_usuario;
     }
+
 
     public Usuarios(String usuario, String password) {
         this.usuario = usuario;

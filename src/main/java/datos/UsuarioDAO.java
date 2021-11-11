@@ -3,12 +3,14 @@ package datos;
 import domain.Usuarios;
 
 import java.sql.*;
+import java.util.*;
 
 import static datos.Conexion.*;
 
 public class UsuarioDAO {
 
     private static final String SQL_INSERT = "INSERT INTO usuarios (usuario, password) VALUES (?, ?)";
+    private static final String SQL_SELECT = "SELECT id_usuario, usuario, password FROM usuarios";
 
     public int insertar(Usuarios usuarios) {
         Connection conn = null;
@@ -34,5 +36,40 @@ public class UsuarioDAO {
         }
 
         return registros;
+    }
+
+    public List<Usuarios> listar() {
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Usuarios usuarios = null;
+
+        List<Usuarios> listUsuarios = new ArrayList<>();
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT);
+            rs = stmt.executeQuery();
+
+            while (rs.next()){
+
+                int idUsuario = rs.getInt("id_usuario");
+                String usuario = rs.getString("usuario");
+                String password = rs.getString("password");
+
+                usuarios = new Usuarios(idUsuario, usuario, password);
+                listUsuarios.add(usuarios);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            try {
+                close(stmt);
+                close(conn);
+            } catch (SQLException e) {
+                e.printStackTrace(System.out);
+            }
+        }
+        return listUsuarios;
     }
 }
