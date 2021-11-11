@@ -13,8 +13,7 @@ public class Usuarios {
         this.id_usuario = id_usuario;
     }
 
-    public Usuarios(int id_usuario, String usuario, String password) {
-        this.id_usuario = id_usuario;
+    public Usuarios(String usuario, String password) {
         this.usuario = usuario;
         this.password = password;
     }
