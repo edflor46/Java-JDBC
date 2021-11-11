@@ -26,7 +26,7 @@ public class TestManejoUsuarios {
 
         Usuarios usuario5 = new Usuarios("Alberto", "12345");
         usuarioDAO.insertar(usuario5);*/
-
+        actualizar();
         listar();
 
 
@@ -41,7 +41,11 @@ public class TestManejoUsuarios {
     }
 
     private static void actualizar(){
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuarios usuarios = new Usuarios(1, "Luis", "12345");
+        usuarioDAO.actualizar(usuarios);
 
+        System.out.println("Usuario actualizado");
     }
 
 
