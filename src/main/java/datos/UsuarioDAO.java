@@ -12,6 +12,7 @@ public class UsuarioDAO {
     private static final String SQL_INSERT = "INSERT INTO usuarios (usuario, password) VALUES (?, ?)";
     private static final String SQL_SELECT = "SELECT id_usuario, usuario, password FROM usuarios";
     private static final String SQL_UPDATE = "UPDATE usuarios SET usuario = ?,  password = ? WHERE id_usuario = ?";
+    private static final String SQL_DELETE = "DELETE FROM usuarios WHERE id_usuario = ?";
 
     public int insertar(Usuarios usuarios) {
         Connection conn = null;
@@ -86,6 +87,31 @@ public class UsuarioDAO {
             stmt.setString(1, usuarios.getUsuario());
             stmt.setString(2, usuarios.getPassword());
             stmt.setInt(3, usuarios.getId_usuario());
+            registros = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            try {
+                close(stmt);
+                close(conn);
+            } catch (SQLException e) {
+                e.printStackTrace(System.out);
+            }
+        }
+        return registros;
+    }
+
+    public int eliminar(Usuarios usuarios) {
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int registros = 0;
+
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement(SQL_DELETE);
+            stmt.setInt(1, usuarios.getId_usuario());
             registros = stmt.executeUpdate();
 
         } catch (SQLException e) {

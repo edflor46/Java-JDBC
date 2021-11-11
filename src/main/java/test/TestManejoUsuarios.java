@@ -26,10 +26,9 @@ public class TestManejoUsuarios {
 
         Usuarios usuario5 = new Usuarios("Alberto", "12345");
         usuarioDAO.insertar(usuario5);*/
-        actualizar();
+
+        eliminar();
         listar();
-
-
     }
 
     private static void listar(){
@@ -46,6 +45,14 @@ public class TestManejoUsuarios {
         usuarioDAO.actualizar(usuarios);
 
         System.out.println("Usuario actualizado");
+    }
+
+    private static void eliminar(){
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuarios usuarios = new Usuarios(1);
+        usuarioDAO.eliminar(usuarios);
+
+        System.out.println("Usuario eliminador");
     }
 
 
